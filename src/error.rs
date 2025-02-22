@@ -1,21 +1,12 @@
-use std::fmt::{Display, Formatter};
-
-impl Display for Error {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Error::Connection(msg) => write!(f, "Connection Error: {}", msg),
-            Error::Serialization(msg) => write!(f, "Serialization Error: {}", msg),
-            Error::AlreadyInitialized => write!(f, "Client already initialized"),
-            Error::NotInitialized => write!(f, "Client not initialized"),
-        }
-    }
-}
-
-#[derive(Debug)]
+#[derive(Debug, thiserror::Error)]
 #[non_exhaustive]
 pub enum Error {
+    #[error("Connection Error: {0}")]
     Connection(String),
+    #[error("Serialization Error: {0}")]
     Serialization(String),
+    #[error("Client already initialized")]
     AlreadyInitialized,
+    #[error("Client not initialized")]
     NotInitialized,
 }
