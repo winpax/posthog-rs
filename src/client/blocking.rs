@@ -6,6 +6,7 @@ use crate::{event::InnerEvent, Error, Event};
 
 use super::ClientOptions;
 
+#[derive(Debug, Clone)]
 pub struct Client {
     options: ClientOptions,
     client: HttpClient,

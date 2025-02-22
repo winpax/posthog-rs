@@ -15,7 +15,7 @@ pub use async_client::client;
 #[cfg(feature = "async-client")]
 pub use async_client::Client;
 
-#[derive(Builder)]
+#[derive(Debug, Clone, Builder)]
 pub struct ClientOptions {
     #[builder(default = "API_ENDPOINT.to_string()")]
     api_endpoint: String,
